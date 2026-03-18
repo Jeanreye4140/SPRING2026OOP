@@ -19,7 +19,7 @@ public class LotteryGame1 {
         // TODO code application logic here
         System.out.println("Lottery Game Example");
         
-        int selectionCount = 20;
+        int selectionCount = 24;
         int lotterySelection[] = new int[selectionCount];
         int selectionBound = 63;
         Random seed = new Random();
