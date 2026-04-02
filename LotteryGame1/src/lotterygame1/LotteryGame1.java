@@ -17,6 +17,10 @@ public class LotteryGame1 extends javax.swing.JFrame {
      */
     public LotteryGame1() {
         initComponents();
+        jTextArea1.append("Lottery Game Example\n");
+        
+        
+        jTextArea1.append("Click button 2 to restart the game");
     }
 
     /**
@@ -57,23 +61,23 @@ public class LotteryGame1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(94, 94, 94))
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(54, 54, 54))
         );
 
         pack();
@@ -96,41 +100,49 @@ public class LotteryGame1 extends javax.swing.JFrame {
         }
         System.out.println();
         
+        int take3[] = generateUniqueNumbers(4, selectionBound);
+        int take4[] = generateUniqueNumbers(5, selectionBound);
+        int take5[] = generateUniqueNumbers(6, selectionBound);
+    
+        printArray(take3);
+        printArray(take4);
+        printArray(take5);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+public static int[] generateUniqueNumbers(int size, int bound) {
+    Random rand = new Random();
+    int[] result = new int[size];
+    int count = 0;
+
+    while (count < size) {
+        int num = rand.nextInt(bound) + 1;
+
+        boolean exists = false;
+        for (int i = 0; i < count; i++) {
+            if (result[i] == num) {
+                exists = true;
+                break;
+            }
+        }
+
+        if (!exists) {
+            result[count] = num;
+            count++;
+        }
+    }
+
+    return result;
+}
+
+public static void printArray(int[] arr) {
+    for (int num : arr) {
+        System.out.print(num + " ");
+    }
+    System.out.println();
+}
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        public static int[] generateUniqueNumbers(int size, int bound) {
-        Random rand = new Random();
-        int[] result = new int[size];
-        int count = 0;
-
-        while (count < size) {
-            int num = rand.nextInt(bound) + 1;
-
-            boolean exists = false;
-            for (int i = 0; i < count; i++) {
-                if (result[i] == num) {
-                    exists = true;
-                    break;
-                }
-            }
-
-            if (!exists) {
-                result[count] = num;
-                count++;
-            }
-        }
-
-        return result;
-    }
-
-    public static void printArray(int[] arr) {
-        for(int num : arr) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
-    }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
