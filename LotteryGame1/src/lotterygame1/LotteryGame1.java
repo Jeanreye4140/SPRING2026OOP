@@ -20,7 +20,7 @@ public class LotteryGame1 extends javax.swing.JFrame {
         jTextArea1.append("Lottery Game Example\n");
         
         
-        jTextArea1.append("Click button 2 to restart the game");
+        //jTextArea1.append("Click button 2 to restart the game");
     }
 
     /**
@@ -35,7 +35,6 @@ public class LotteryGame1 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,13 +49,6 @@ public class LotteryGame1 extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,18 +57,14 @@ public class LotteryGame1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(95, 95, 95))
+                .addGap(95, 300, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton1)
                 .addGap(54, 54, 54))
         );
 
@@ -84,7 +72,6 @@ public class LotteryGame1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("Lottery Game Example");
 
         int selectionCount = 18;
         int lotterySelection[] = new int[selectionCount];
@@ -96,17 +83,24 @@ public class LotteryGame1 extends javax.swing.JFrame {
 
         for(int i = 0; i < selectionCount; i++) {
             lotterySelection[i] = rv1.nextInt(selectionBound) + 1;
-            System.out.print(lotterySelection[i] + " ");
+            jTextArea1.append(lotterySelection[i] + " ");
         }
-        System.out.println();
         
         int take3[] = generateUniqueNumbers(4, selectionBound);
         int take4[] = generateUniqueNumbers(5, selectionBound);
         int take5[] = generateUniqueNumbers(6, selectionBound);
     
-        printArray(take3);
-        printArray(take4);
-        printArray(take5);
+        jTextArea1.append("\nTake 3: ");
+        printArray(take3, jTextArea1);
+
+        jTextArea1.append("Take 4: ");
+        printArray(take4, jTextArea1);
+
+        jTextArea1.append("Take 5: ");
+        printArray(take5, jTextArea1);
+        
+        
+        jTextArea1.append("\nIf you want to play again press the jbutton1\n");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 public static int[] generateUniqueNumbers(int size, int bound) {
@@ -134,16 +128,12 @@ public static int[] generateUniqueNumbers(int size, int bound) {
     return result;
 }
 
-public static void printArray(int[] arr) {
+public static void printArray(int[] arr, javax.swing.JTextArea area) {
     for (int num : arr) {
-        System.out.print(num + " ");
+        area.append(num + " ");
     }
-    System.out.println();
+    area.append("\n");
 }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +172,6 @@ public static void printArray(int[] arr) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
