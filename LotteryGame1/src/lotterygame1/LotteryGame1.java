@@ -90,6 +90,16 @@ public class LotteryGame1 extends javax.swing.JFrame {
         int take4[] = generateUniqueNumbers(5, selectionBound);
         int take5[] = generateUniqueNumbers(6, selectionBound);
     
+
+        // Winning tickets
+        int win3[] = generateUniqueNumbers(4, selectionBound);
+        int win4[] = generateUniqueNumbers(5, selectionBound);
+        int win5[] = generateUniqueNumbers(6, selectionBound);
+
+        // Bonus number
+        int bonus = new Random().nextInt(selectionBound) + 1;
+
+        // Display player's tickets
         jTextArea1.append("\nTake 3: ");
         printArray(take3, jTextArea1);
 
@@ -98,6 +108,18 @@ public class LotteryGame1 extends javax.swing.JFrame {
 
         jTextArea1.append("Take 5: ");
         printArray(take5, jTextArea1);
+
+        // Display winning tickets
+        jTextArea1.append("\nWinning Take 3: ");
+        printArray(win3, jTextArea1);
+
+        jTextArea1.append("Winning Take 4: ");
+        printArray(win4, jTextArea1);
+
+        jTextArea1.append("Winning Take 5: ");
+        printArray(win5, jTextArea1);
+
+        jTextArea1.append("\nBonus Number: " + bonus + "\n\n");
         
         
         jTextArea1.append("\nIf you want to play again press the jbutton1\n");
@@ -135,6 +157,40 @@ public static void printArray(int[] arr, javax.swing.JTextArea area) {
     area.append("\n");
 }
 
+public static boolean isExactMatch(int[] a, int[] b) {
+    if (a.length != b.length) return false;
+
+    for (int i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+public static boolean containsNumber(int[] arr, int num) {
+    for (int n : arr) {
+        if (n == num) return true;
+    }
+    return false;
+}
+
+
+public void checkWin(int[] player, int[] winning, int bonus, int prize, String label) {
+
+    if (isExactMatch(player, winning)) {
+
+        if (containsNumber(player, bonus)) {
+            prize *= 10;
+            jTextArea1.append(label + " WINNER with BONUS! Prize: $" + prize + "\n");
+        } else {
+            jTextArea1.append(label + " WINNER! Prize: $" + prize + "\n");
+        }
+
+    } else {
+        jTextArea1.append(label + " not a winner.\n");
+    }
+}
     /**
      * @param args the command line arguments
      */
