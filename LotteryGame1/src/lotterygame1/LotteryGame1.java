@@ -17,7 +17,7 @@ public class LotteryGame1 extends javax.swing.JFrame {
      */
     public LotteryGame1() {
         initComponents();
-        jTextArea1.append("Lottery Game Example\n");
+        universalOutputConsole.append("Lottery Game Example\n");
         
         
         //jTextArea1.append("Click button 2 to restart the game");
@@ -32,46 +32,55 @@ public class LotteryGame1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        unviersalContentPane = new javax.swing.JScrollPane();
+        universalOutputConsole = new javax.swing.JTextArea();
+        standardButtonLeft = new javax.swing.JButton();
+        standardButtonRight = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        universalOutputConsole.setColumns(20);
+        universalOutputConsole.setRows(5);
+        unviersalContentPane.setViewportView(universalOutputConsole);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        standardButtonLeft.setText("Start");
+        standardButtonLeft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                standardButtonLeftActionPerformed(evt);
             }
         });
+
+        standardButtonRight.setText("Set Button");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(95, 300, Short.MAX_VALUE))
+                .addComponent(standardButtonLeft)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(standardButtonRight)
+                .addGap(27, 27, 27))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(unviersalContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addComponent(unviersalContentPane, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(standardButtonLeft)
+                    .addComponent(standardButtonRight))
                 .addGap(54, 54, 54))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void standardButtonLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardButtonLeftActionPerformed
 
         int selectionCount = 18;
         int lotterySelection[] = new int[selectionCount];
@@ -83,7 +92,7 @@ public class LotteryGame1 extends javax.swing.JFrame {
 
         for(int i = 0; i < selectionCount; i++) {
             lotterySelection[i] = rv1.nextInt(selectionBound) + 1;
-            jTextArea1.append(lotterySelection[i] + " ");
+            universalOutputConsole.append(lotterySelection[i] + " ");
         }
         
         int take3[] = generateUniqueNumbers(4, selectionBound);
@@ -100,31 +109,31 @@ public class LotteryGame1 extends javax.swing.JFrame {
         int bonus = new Random().nextInt(selectionBound) + 1;
 
         // Display player's tickets
-        jTextArea1.append("\nTake 3: ");
-        printArray(take3, jTextArea1);
+        universalOutputConsole.append("\nTake 3: ");
+        printArray(take3, universalOutputConsole);
 
-        jTextArea1.append("Take 4: ");
-        printArray(take4, jTextArea1);
+        universalOutputConsole.append("Take 4: ");
+        printArray(take4, universalOutputConsole);
 
-        jTextArea1.append("Take 5: ");
-        printArray(take5, jTextArea1);
+        universalOutputConsole.append("Take 5: ");
+        printArray(take5, universalOutputConsole);
 
         // Display winning tickets
-        jTextArea1.append("\nWinning Take 3: ");
-        printArray(win3, jTextArea1);
+        universalOutputConsole.append("\nWinning Take 3: ");
+        printArray(win3, universalOutputConsole);
 
-        jTextArea1.append("Winning Take 4: ");
-        printArray(win4, jTextArea1);
+        universalOutputConsole.append("Winning Take 4: ");
+        printArray(win4, universalOutputConsole);
 
-        jTextArea1.append("Winning Take 5: ");
-        printArray(win5, jTextArea1);
+        universalOutputConsole.append("Winning Take 5: ");
+        printArray(win5, universalOutputConsole);
 
-        jTextArea1.append("\nBonus Number: " + bonus + "\n\n");
+        universalOutputConsole.append("\nBonus Number: " + bonus + "\n\n");
         
         
-        jTextArea1.append("\nIf you want to play again press the jbutton1\n");
+        universalOutputConsole.append("\nIf you want to play again press the jbutton1\n");
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_standardButtonLeftActionPerformed
 public static int[] generateUniqueNumbers(int size, int bound) {
     Random rand = new Random();
     int[] result = new int[size];
@@ -182,13 +191,13 @@ public void checkWin(int[] player, int[] winning, int bonus, int prize, String l
 
         if (containsNumber(player, bonus)) {
             prize *= 10;
-            jTextArea1.append(label + " WINNER with BONUS! Prize: $" + prize + "\n");
+            universalOutputConsole.append(label + " WINNER with BONUS! Prize: $" + prize + "\n");
         } else {
-            jTextArea1.append(label + " WINNER! Prize: $" + prize + "\n");
+            universalOutputConsole.append(label + " WINNER! Prize: $" + prize + "\n");
         }
 
     } else {
-        jTextArea1.append(label + " not a winner.\n");
+        universalOutputConsole.append(label + " not a winner.\n");
     }
 }
     /**
@@ -227,9 +236,10 @@ public void checkWin(int[] player, int[] winning, int bonus, int prize, String l
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton standardButtonLeft;
+    private javax.swing.JButton standardButtonRight;
+    private javax.swing.JTextArea universalOutputConsole;
+    private javax.swing.JScrollPane unviersalContentPane;
     // End of variables declaration//GEN-END:variables
 }
 
